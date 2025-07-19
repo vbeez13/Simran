@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I'm Sorry Simran</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top, #e6f7f7, #f2fcfc);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-top: 20px;
+    }
+
+    .heart {
+      font-size: 60px;
+      animation: beat 1s infinite;
+      color: #ffdd00;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .cry {
+      font-size: 30px;
+    }
+
+    .button {
+      background-color: #99cccc;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #slideshow {
+      width: 90%;
+      max-width: 400px;
+      margin: 20px auto;
+    }
+
+    #slideshow img {
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    #typing {
+      font-family: monospace;
+      font-size: 18px;
+      color: #555;
+      margin-top: 30px;
+    }
+
+    #lantern-container {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .lantern {
+      position: absolute;
+      width: 40px;
+      height: 60px;
+      background: #fff8dc;
+      border-radius: 10px;
+      animation: floatUp 5s linear forwards;
+      box-shadow: 0 0 15px gold;
+      text-align: center;
+      font-size: 12px;
+      padding-top: 5px;
+      color: #333;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-120vh); opacity: 0; }
+    }
+
+    #falling {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .petal {
+      position: absolute;
+      top: -10px;
+      width: 20px;
+      height: 20px;
+      background-image: url('');
+      background-size: cover;
+      opacity: 0.8;
+      animation: fall 10s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: twinkle 2s infinite;
+      z-index: -2;
+    }
+
+    @keyframes twinkle {
+      0%, 100% {opacity: 0.3;}
+      50% {opacity: 0.7;}
+    }
+  </style>
+</head>
+<body>
+  <h1>I'm Sorry, Simran 💛 <span class="cry">😢</span></h1>
+  <div class="heart">💛</div>
+
+  <div id="typing"></div>
+
+  <div id="slideshow">
+    <img id="slide" src="https://via.placeholder.com/400x300?text=Us" alt="Slideshow">
+  </div>
+
+  <audio controls autoplay loop style="display:none">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <div id="falling"></div>
+  <div id="lantern-container"></div>
+  <button onclick="releaseLantern()" class="button">🎈 Send a Wish</button>
+
+  <script>
+    const slideImages = [
+      'https://via.placeholder.com/400x300?text=Happy+Moment+1',
+      'https://via.placeholder.com/400x300?text=Happy+Moment+2',
+      'https://via.placeholder.com/400x300?text=Happy+Moment+3'
+    ];
+
+    let current = 0;
+    setInterval(() => {
+      current = (current + 1) % slideImages.length;
+      document.getElementById('slide').src = slideImages[current];
+    }, 3000);
+
+    const messages = [
+      "Typing...",
+      "I miss you",
+      "I just want to fix this",
+      "Can we talk again, Simran?"
+    ];
+    let i = 0;
+    function showTyping() {
+      document.getElementById("typing").innerText = messages[i];
+      i = (i + 1) % messages.length;
+    }
+    setInterval(showTyping, 2500);
+    showTyping();
+
+    function releaseLantern() {
+      const container = document.getElementById('lantern-container');
+      const lantern = document.createElement('div');
+      lantern.className = 'lantern';
+      const wishes = [
+        "I miss you",
+        "You still matter to me",
+        "I wish for one more smile",
+        "Please forgive me"
+      ];
+      lantern.innerText = wishes[Math.floor(Math.random() * wishes.length)];
+      lantern.style.left = (Math.random() * 80 + 10) + '%';
+      container.appendChild(lantern);
+      setTimeout(() => lantern.remove(), 5000);
+    }
+
+    const fallContainer = document.getElementById('falling');
+    for (let i = 0; i < 20; i++) {
+      let petal = document.createElement('div');
+      petal.className = 'petal';
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDelay = Math.random() * 10 + 's';
+      fallContainer.appendChild(petal);
+    }
+  </script>
+</body>
+</html>
