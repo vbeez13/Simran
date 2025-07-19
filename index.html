@@ -132,6 +132,14 @@
       0%, 100% {opacity: 0.3;}
       50% {opacity: 0.7;}
     }
+
+
+    #slideshow {
+  width: 300px;   /* set your desired width */
+  height: 200px;  /* set your desired height */
+  object-fit: cover; /* crop/scale the image to fit nicely */
+}
+
   </style>
 </head>
 <body>
@@ -154,7 +162,8 @@
 
   <script>
     const slideImages = [
-      'dog1.gif',
+      'dog3.jpg',
+    'dog4.jpg'
     ];
 
     let current = 0;
@@ -166,8 +175,10 @@
     const messages = [
       "Typing...",
       "I miss you",
-      "I just want to fix this",
-      "Can we talk again, Simran?"
+      "Typing...",
+      "Can we talk again, Simran?",
+      "Typing...",
+      "You matter to me Simran"
     ];
     let i = 0;
     function showTyping() {
@@ -183,8 +194,8 @@
       lantern.className = 'lantern';
       const wishes = [
         "I miss you",
-        "You still matter to me",
-        "I wish for one more smile",
+        "You matter to me",
+        "I regret my actions",
         "Please forgive me"
       ];
       lantern.innerText = wishes[Math.floor(Math.random() * wishes.length)];
